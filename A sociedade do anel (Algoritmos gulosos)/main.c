@@ -77,7 +77,7 @@ void path_cost(Matrix *matrix)
         }
 
         if(direction == -1) // dead end alcançado
-            dead_end == 'y';
+            dead_end = 'y';
         else
         {
             matrix->mat[i][j] = -1; // marca os lugares já percorridos
