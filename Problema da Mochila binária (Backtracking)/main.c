@@ -79,7 +79,7 @@ int main() {
 
     int i;
 
-    Item *Item;
+    Item *Item = malloc(sizeof(Item));
     Item->Item_size = n;
     Item->c = (int*) malloc(n * sizeof(int));
     Item->w = (int*) malloc(n * sizeof(int));
