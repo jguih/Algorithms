@@ -115,39 +115,30 @@ int Tree_search(Tree *Tree, int key)
     if(Tree != NULL)  
     {
         if(Tree->Tree_size <= 1) // se ativer apenas a raiz ou nenhum valor, a altura é zero
-            return 0;
+            return hight;
         else
         {
             if(key < Tree->Node->key) // se key está na esquerda da árvore
             {
                 aux = Tree->Node->left;
                 hight++;
-
-                while(aux->key != key)
-                {
-                    if(key < aux->key) // esquerda
-                        aux = aux->left;
-                    else // direita
-                        aux = aux->right;
-                            
-                    hight++;
-                }
             }
             else // se key está na direita da árvore
             {
                 aux = Tree->Node->right;
                 hight++;
+            } 
+            
+            while(aux->key != key)
+            {
+                if(key < aux->key) // esquerda
+                    aux = aux->left;
+                else // direita
+                    aux = aux->right;
 
-                while(aux->key != key)
-                {
-                    if(key < aux->key) // esquerda
-                        aux = aux->left;
-                    else // direita
-                        aux = aux->right;
-
-                    hight++;
-                }
+                hight++;
             }
+            
         }
     }
     return hight;
