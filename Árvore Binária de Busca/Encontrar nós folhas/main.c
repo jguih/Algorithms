@@ -38,7 +38,7 @@ Tree* Tree_create(int Tree_size)
 
 void Tree_insert(Tree *Tree, int key)
 {
-    Node *new_node, *aux, *aux_next;
+    Node *new_node, *aux = NULL, *aux_next;
 
     if(Tree == NULL)
         Tree = Tree_create(0);
@@ -61,71 +61,47 @@ void Tree_insert(Tree *Tree, int key)
             {
                 aux = Tree->Node->left; // aux e aux_next começam no primeiro valor da esquerda
                 aux_next = aux;
-
-                // aux_next para no endereço onde o novo valor deve ser inserido
-                // aux sempre para no nó anterior
-                while(aux_next != NULL)
-                {
-                    if(key < aux_next->key) // esquerda
-                    {
-                        aux = aux_next;
-                        aux_next = aux_next->left;
-                    }
-                    else // direita
-                    {
-                        aux = aux_next;
-                        aux_next = aux_next->right;
-                    }
-                        
-                }
-                aux_next = new_node; // aux_next recebe o novo nó
-                
-                // faz o aux apontar para aux_next
-                if(aux_next->key < aux->key) // esquerda
-                    aux->left = aux_next;
-                else // direita
-                    aux->right = aux_next;
-
-                Tree->Tree_size++;
             }  
             
         }
         else // Valor maior, começa na direita
         {
-            if(Tree->Node->right == NULL)
+            if(Tree->Node->right == NULL) // Caso não tenha nenhum valor na direita
                 Tree->Node->right = new_node;
             else
             {
-                aux = Tree->Node->right;
+                aux = Tree->Node->right; // aux e aux_next começam no primeiro valor da direita
                 aux_next = aux;
-
-                // aux_next para no endereço onde o novo valor deve ser inserido
-                // aux sempre para no nó anterior
-                while(aux_next != NULL)
-                {
-                    if(key < aux_next->key) // esquerda
-                    {
-                        aux = aux_next;
-                        aux_next = aux_next->left;
-                    }
-                    else // direita
-                    {
-                        aux = aux_next;
-                        aux_next = aux_next->right;
-                    }
-                        
-                }
-                aux_next = new_node; // aux_next recebe o novo nó
-
-                // faz o aux apontar para aux_next
-                if(aux_next->key < aux->key) // esquerda
-                    aux->left = aux_next;
-                else // direita
-                    aux->right = aux_next;
-                    
-                Tree->Tree_size++;
             }
             
+        }
+        if(aux != NULL) // Verifico se o aux foi iniciado
+        {
+            // aux_next para no endereço onde o novo nó deve ser inserido
+            // aux sempre para no nó anterior
+            while(aux_next != NULL)
+            {
+                if(key < aux_next->key) // esquerda
+                {
+                    aux = aux_next;
+                    aux_next = aux_next->left;
+                }
+                else // direita
+                {
+                    aux = aux_next;
+                    aux_next = aux_next->right;
+                }
+                        
+            }
+            aux_next = new_node; // aux_next recebe o novo nó
+
+            // faz o aux apontar para aux_next
+            if(aux_next->key < aux->key) // esquerda
+                aux->left = aux_next;
+            else // direita
+                aux->right = aux_next;
+                    
+            Tree->Tree_size++;
         }
     }
 }
