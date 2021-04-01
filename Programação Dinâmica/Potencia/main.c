@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int potencia(int a, int b, int *v) // a^b
 {
