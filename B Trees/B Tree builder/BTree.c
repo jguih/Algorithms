@@ -223,7 +223,21 @@ BTree_Node* BTree_Insert(BTree_Node *tree, int key, int count)
     return tree;
 }
 
-// função para contar a quantidade de páginas da árvoreB
+// função para a altura da arvore b
+int BTree_Height(BTree_Node *tree)
+{
+    int height = 0;
+
+    while(!tree->is_leaf)
+    {
+        tree = tree->child[0];
+        height++;
+    }
+
+    return height;
+}
+
+// funcao para contar a quantidade de paginas da arvoreB
 void BTree_PagesC(BTree_Node *tree, int *count)
 {
     int i;
@@ -260,14 +274,40 @@ void BTree_Print(BTree_Node *tree)
     BTree_Print(tree->child[i]);
 }
 
+int Leaf_Add = 0; 
+int Leaf_Count = 0;
+// funcao para calcular a media entre os elementos dos nos folha
+void BTree_Media(BTree_Node *tree)
+{
+    int i;
+
+    if(tree != NULL)
+    {
+        for(i = 0; i < tree->n_key; i++)
+        {
+            BTree_Media(tree->child[i]);
+            if(tree->is_leaf)
+            {
+                Leaf_Add += tree->key[i];
+                Leaf_Count++;
+            }
+        }
+    }
+    else
+        return;
+
+    BTree_Media(tree->child[i]);
+}
+
 int main()
 {
     BTree_Node *tree = BTree_Node_Create();
-    int count = 0;
+    int count = 0; // auxiliar para o contador de paginas
+    int media;
 
     tree = BTree_Insert(tree, 20, -1);
     Initialize_GlobalVals();
-    tree = BTree_Insert(tree, 0, -1);
+    tree = BTree_Insert(tree, 10, -1);
     Initialize_GlobalVals();
     tree = BTree_Insert(tree, 15, -1);
     Initialize_GlobalVals();
@@ -302,7 +342,14 @@ int main()
     BTree_Print(tree);
     printf("\n");
     BTree_PagesC(tree, &count);
-    printf("Pages: %d",count);
+    printf("Pages: %d\n",count+1);
+    printf("Height: %d\n",BTree_Height(tree));
+    BTree_Media(tree);
+
+    if(Leaf_Count > 0)
+        media = Leaf_Add/Leaf_Count;
+    
+    printf("Leaf Nodes Average: %d",media);
 
     return 0;
 }
