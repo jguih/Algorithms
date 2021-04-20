@@ -29,7 +29,7 @@ void AVL_Tree_print(Node *Root, int spaces) // Mostra a árvore AVL
 ```c
 void AVL_Tree_destroy(Node *Root) // Destrói a árvore AVL
 ```
-Rotações de uma árvore AVL:
+## Rotações de uma árvore AVL:
 
 ![AVL tree rotations](https://user-images.githubusercontent.com/62079543/115450372-2fbcec00-a1f2-11eb-94b0-8179c256b08c.png)
 
