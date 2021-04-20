@@ -112,9 +112,11 @@ int max_cost_mochila_binaria(Item *Item, int c)
 int main() {
 
     int c; // capacidade da mochila
+    printf("Capacidade da mochila: ");
     scanf("%d",&c);
 
     int n; // quantidade de itens
+    printf("Quantidade de itens: ");
     scanf("%d",&n);
 
     int i; // auxiliar
@@ -125,8 +127,10 @@ int main() {
     Item->w = (int*) malloc(n * sizeof(int)); // peso
 
     for(i = 0; i < Item->Item_size; i++)
-    {
+    {   
+        printf("Peso do item %d: ",i+1);
         scanf("%d",Item->w+i); 
+        printf("Custo do item %d: ",i+1);
         scanf("%d",Item->c+i); 
     }
 

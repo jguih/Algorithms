@@ -8,10 +8,6 @@ Na próxima linha, deve ser lido um outro número (N) referente à quantidade de
 
 Em seguida, nas N linhas restantes devem ser lidos o peso e o valor (logo em sequência) de cada objeto.
 
-Constraints
-
-.
-
 Output Format
 
 O valor máximo de objetos que a mochila possa carregar.

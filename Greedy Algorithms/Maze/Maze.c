@@ -93,7 +93,6 @@ void path_cost(Matrix *matrix)
             else
                 i--;
         }  
-
         // final alcançado
         if(i == (matrix->n_row - 1))
             if(j == (matrix->n_col -1))
@@ -101,7 +100,6 @@ void path_cost(Matrix *matrix)
                 matrix->mat[i][j] = -1;
                 final_reached = 'y';
             }
-                
 
     }while(final_reached == 'n' && dead_end == 'n');
 
@@ -115,17 +113,25 @@ int main() {
     
     int i, j;
     int n_row, n_col;
-    scanf("%d %d",&n_row, &n_col);
+
+    //scanf("%d %d",&n_row, &n_col);
+
+    // sample input:
+    n_row = 6;
+    n_col = 6;
     Matrix *matrix = Matrix_create(n_row, n_col);
 
     for(i = 0; i < matrix->n_row; i++)
         for(j = 0; j < matrix->n_col; j++)
-            scanf("%d",&matrix->mat[i][j]);
-
-    //Matrix_print(matrix);
+        {
+            //scanf("%d",&matrix->mat[i][j]);
+            matrix->mat[i][j] = rand() % 5;
+        }
+            
+    Matrix_print(matrix);
     path_cost(matrix);
-    //printf("\n");
-    //Matrix_print(matrix);
+    printf("\n");
+    Matrix_print(matrix);
 
     return 0;
 }

@@ -276,7 +276,7 @@ void BTree_Print(BTree_Node *tree)
 
 int Leaf_Add = 0; 
 int Leaf_Count = 0;
-// funcao para calcular a media entre os elementos dos nos folha
+// funcao auxiliar para calcular a media entre os elementos dos nos folha
 void BTree_Media(BTree_Node *tree)
 {
     int i;
