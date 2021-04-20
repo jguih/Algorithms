@@ -1,5 +1,5 @@
 # Mochila Binária (Backtracking)
-O código resolve o problema da mochila binária ultilizando o backtracking.
+O código resolve o problema da mochila binária ultilizando backtracking.
 ## Estruturas
 Itens que serão inseridos na mochila:
 ```c
