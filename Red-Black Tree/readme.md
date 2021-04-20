@@ -16,6 +16,7 @@ Para a função inserir é necessário informar 'count' como -1 e chamar a funç
 ```c
 RB_Node* RB_Tree_insert(int key, RB_Node *Root, int count) // inserir na árvore-RB
 ```
+Outras funções:
 ```c
 void RB_Tree_print(RB_Node *Root, int spaces) // imprime a árvore RB
 ```
