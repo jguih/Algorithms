@@ -1,5 +1,6 @@
 # Multiplicação de cadeia de matrizes
-O programa gera uma matriz solução de todas as possibilidades de multiplicação entre matrizes e retorna sempre o menor custo
+O programa gera uma matriz solução de todas as possibilidades de multiplicação entre matrizes e retorna sempre o menor custo.
+https://www.youtube.com/watch?v=prx1psByp7U&
 ## Estruturas
 Matriz:
 ```c
