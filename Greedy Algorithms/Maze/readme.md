@@ -20,5 +20,5 @@ Matrix* Matrix_create(int n_row, int n_col) // criar a matriz (labirinto)
 void Matrix_print(Matrix *mat) // imprimir a matriz
 ```
 ```c
-void path_cost(Matrix *matrix) // calcula o custo total de deslocamento
+void path_cost(Matrix *matrix) // calcula o custo total de deslocamento inserindo -1 no caminho percorrido
 ```
