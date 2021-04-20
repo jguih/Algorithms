@@ -13,7 +13,7 @@ typedef struct Node
     struct Node *right;
 }Node;
 ```
-## Funções neste código
+## Funções
 ```c
 Node* AVL_Tree_insert(int key, Node *Root) // Função para inserir na árvore AVL
 ```
