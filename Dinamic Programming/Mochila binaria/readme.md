@@ -1,17 +1,33 @@
-Considere n itens a serem levados para uma viagem, dentro de uma mochila de capacidade b. Cada item x_j tem um peso a_j e um valor c_j. Implemente uma função, utilizando programação dinâmica, que calcule o valor máximo de objetos que podem ser carregados dentro da mochila.
+# Mochila Binária (Dinamic Programming)
+O programa resolve o problema da mochila binária usando programação dinâmica, gerando todas as soluções possíveis
 
-Input Format
-
-Na primeira linha deve ser lido um número inteiro que represente a capacidade da mochila.
-
-Na próxima linha, deve ser lido um outro número (N) referente à quantidade de objetos disponíveis.
-
-Em seguida, nas N linhas restantes devem ser lidos o peso e o valor (logo em sequência) de cada objeto.
-
-Constraints
-
-.
-
-Output Format
-
-O valor máximo de objetos que a mochila possa carregar.
+https://pt.wikipedia.org/wiki/Problema_da_mochila#Solu%C3%A7%C3%A3o_usando_Programa%C3%A7%C3%A3o_Din%C3%A2mica
+## Estruturas
+Matriz:
+```c
+typedef struct 
+{
+    int n_row; // nº de linhas
+    int n_col; // nº de colunas
+    int **mat; // matriz
+}Matrix;
+```
+Item:
+```c
+typedef struct
+{
+    int *a; // peso
+    int *c; // custo
+    int Item_size; // tamanho da lista de itens
+}Item;
+```
+## Funções
+```c
+Matrix* Matrix_Create(int n_row, int n_col) // cria a matriz
+```
+```c
+void Matrix_print(Matrix *mat) // imprime a matriz
+```
+```c
+int mochila_binaria(Item *item, int bag_size) // gera uma matriz solução e retorna a melhor
+```
