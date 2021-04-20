@@ -4,8 +4,8 @@ Implementação da árvore Red-Black em C.
 ```c
 typedef struct RB_Node
 {
-    int key; // valor do noh
-    char color; // cor do noh, 'r' vermelho e 'b' preto
+    int key; // valor do nó
+    char color; // cor do nó, 'r' vermelho e 'b' preto
     struct RB_Node *father;
     struct RB_Node *left; 
     struct RB_Node *right;
