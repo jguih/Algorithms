@@ -28,7 +28,7 @@ Array* Array_create(int size)
 Matrix* Matrix_create(int n_row, int n_col)
 {
     int i;
-    Matrix *Matrix = (int*) malloc(sizeof(Matrix));
+    Matrix *Matrix = malloc(sizeof(Matrix));
 
     Matrix->mat = (int**) malloc(n_row * sizeof(int*));
     Matrix->n_row = n_row;

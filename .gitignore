@@ -1,2 +1,3 @@
 *.exe
-AVL Tree/Verify if tree is AVL/IsAVL.exe
+.gitignore
+.vscode
