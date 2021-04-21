@@ -11,7 +11,7 @@ typedef struct BTree_Node
 }BTree_Node;
 ```
 ## Funções neste código
-A função inserir precisa receber -1 na variável count. E é necessário utilizar a função Initialize_GlobalVals() para seu correto funcionamento
+A função inserir precisa receber -1 na variável count e é necessário utilizar a função Initialize_GlobalVals() para seu correto funcionamento
 ```c
 BTree_Node* BTree_Insert(BTree_Node *tree, int key, int count) // inserir na árvore-B
 ```
