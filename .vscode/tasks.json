@@ -2,6 +2,28 @@
     "tasks": [
         {
             "type": "cppbuild",
+            "label": "C/C++: gcc.exe buildar todos os arquivos",
+            "command": "C:\\mingw-w64\\x86_64-8.1.0-win32-seh-rt_v6-rev0\\mingw64\\bin\\gcc.exe",
+            "args": [
+                "-g",
+                "${fileDirname}\\*.c",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Builda todos os arquivos com a extensão .c"
+        },
+        {
+            "type": "cppbuild",
             "label": "C/C++: gcc.exe arquivo de build ativo",
             "command": "C:\\mingw-w64\\x86_64-8.1.0-win32-seh-rt_v6-rev0\\mingw64\\bin\\gcc.exe",
             "args": [
@@ -20,7 +42,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Tarefa gerada pelo Depurador."
+            "detail": "Builda apenas o arquivo atual"
         }
     ],
     "version": "2.0.0"
