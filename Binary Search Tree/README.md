@@ -29,6 +29,7 @@ void BT_print(BT_Node *Root, int spaces) // Função para mostrar a BSTree
 ```c
 int BT_height(BT_Node *Root) // Função para calcular a altura a partir de uma raíz
 ```
+A função void Initialize_GlobalVals() precisa ser chamada antes de um nó ser deletado
 ```c
 BT_Node* BT_delete(BT_Node *Root, int key) // Função para deleter um nó da BSTree
 ```
