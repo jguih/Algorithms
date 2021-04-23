@@ -19,17 +19,27 @@ struct LinkedList
 ```
 ## Funções neste código
 ```c
-LL_Node* LL_Node_create(int key); // Criar o nó
+LL_Node* LL_Node_create(int key); // função para criar um nó da lista
 ```
 ```c
-Llist* Llist_create(); // Cria a lista
+int LL_Node_key(LL_Node *Node); // retorna a key do nó
 ```
 ```c
-Llist* Llist_insert(Llist *list, int new_key); // Insere na lista encadeada
+Llist* Llist_create(); // função para criar a lista
 ```
 ```c
-void Llist_delete(Llist *list, int key); // Deleta na lista encadeada
+LL_Node* Llist_insert(Llist *list, int new_key); // função pra inserir na lista
 ```
 ```c
-void Llist_print(Llist *list); // Mostra a lista
+LL_Node* Llist_delete(Llist *list, int key); // função para deletar na lista
 ```
+```c
+void Llist_print(Llist *list); // função para printar a lista
+```
+```c
+int Llist_isempty(Llist *list); // função para verificar se a lista está vazia
+```
+```c
+LL_Node* Llist_deletehead(Llist *list); // função para remover a head da lista
+```
+
