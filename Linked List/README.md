@@ -13,7 +13,6 @@ Lista encadeada:
 ```c
 struct LinkedList
 {
-    int size; // quantidade de valores na lista
     LL_Node *head;
 };
 ```
