@@ -13,9 +13,8 @@ Queue:
 ```c
 struct Queue
 {
-    Llist *list; // lista encadeada
-    LL_Node *front; // inicio
-    LL_Node *back; // fim
+    QueueNode *front; // inicio
+    QueueNode *back; // fim
 };
 ```
 ## Funções neste código
