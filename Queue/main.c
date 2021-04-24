@@ -14,6 +14,14 @@ int main()
     Enqueue(q, 50);
     Dequeue(q);
     Dequeue(q);
+    Dequeue(q);
+    Dequeue(q);
+    Dequeue(q);
+    Enqueue(q, 10);
+    Enqueue(q, 20);
+    Enqueue(q, 30);
+    Enqueue(q, 40);
+    Dequeue(q);
     
     Queue_print(q);
 

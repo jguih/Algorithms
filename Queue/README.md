@@ -1,6 +1,15 @@
 # Queue
 Implementação de uma fila em C.
 ## Estrutura
+Nó da Queue:
+```c
+struct QueueNode
+{
+    int key;
+    struct QueueNode *next;
+};
+```
+Queue:
 ```c
 struct Queue
 {

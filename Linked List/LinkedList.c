@@ -3,21 +3,21 @@
 #include <math.h>
 #include "LinkedList.h"
 
-struct LL_Node
+struct LLNode
 {
     int key; // valor do noh
-    struct LL_Node *next;
+    struct LLNode *next;
 };
 
-typedef struct LinkedList
+struct LinkedList
 {
-    LL_Node *head;
+    LLNode *head;
 };
 
 // funcao para criar o noh da lista
-LL_Node* LL_Node_create(int key)
+LLNode* LLNode_create(int key)
 {
-    LL_Node *new_node = malloc(sizeof(LL_Node));
+    LLNode *new_node = malloc(sizeof(LLNode));
 
     new_node->next = NULL;
     new_node->key = key;
@@ -26,7 +26,7 @@ LL_Node* LL_Node_create(int key)
 }
 
 // funcao para retornar a key do noh
-int LL_Node_key(LL_Node *Node)
+int LLNode_key(LLNode *Node)
 {
     return Node->key;
 }
@@ -41,10 +41,10 @@ Llist* Llist_create()
 }
 
 // funcao para inserir na lista
-LL_Node* Llist_insert(Llist *list, int new_key)
+LLNode* Llist_insert(Llist *list, int new_key)
 {
-    LL_Node *new_node = LL_Node_create(new_key);
-    LL_Node *p;
+    LLNode *new_node = LLNode_create(new_key);
+    LLNode *p;
 
     if(list == NULL)
         list = Llist_create();
@@ -63,9 +63,9 @@ LL_Node* Llist_insert(Llist *list, int new_key)
 }
 
 // funcao para inserir no final da lista
-LL_Node* Llist_insertend(Llist *list, LL_Node *end, int key)
+LLNode* Llist_insertend(Llist *list, LLNode *end, int key)
 {
-    LL_Node *new_node = LL_Node_create(key);
+    LLNode *new_node = LLNode_create(key);
 
     if(list == NULL)
         list = Llist_create();
@@ -79,9 +79,9 @@ LL_Node* Llist_insertend(Llist *list, LL_Node *end, int key)
 }
 
 // funcao para deletar noh da lista
-LL_Node* Llist_delete(Llist *list, int key)
+LLNode* Llist_delete(Llist *list, int key)
 {
-    LL_Node *p, *deleted;
+    LLNode *p, *deleted;
 
     if(list != NULL && list->head != NULL)
     {
@@ -110,7 +110,7 @@ LL_Node* Llist_delete(Llist *list, int key)
 }
 
 // funcao para remover a head da lista
-LL_Node* Llist_deletehead(Llist *list)
+LLNode* Llist_deletehead(Llist *list)
 {
     if(list->head == NULL)
         return NULL;
@@ -123,7 +123,7 @@ LL_Node* Llist_deletehead(Llist *list)
 // funcao para imprimir a lista
 void Llist_print(Llist *list)
 {
-    LL_Node *p;
+    LLNode *p;
 
     if(list != NULL && list->head != NULL)
     {

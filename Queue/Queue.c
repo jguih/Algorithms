@@ -1,55 +1,80 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "LinkedList.h"
 #include "Queue.h"
 
+struct QueueNode
+{
+    int key;
+    struct QueueNode *next;
+};
 struct Queue
 {
-    Llist *list; // lista encadeada
-    LL_Node *front; // inicio
-    LL_Node *back; // fim
+    QueueNode *front; // inicio
+    QueueNode *back; // fim
 };
+
+// funcao para criar um noh da queue
+QueueNode* QueueNode_create(int key)
+{
+    QueueNode *new_node = malloc(sizeof(QueueNode));
+
+    new_node->next = NULL;
+    new_node->key = key;
+
+    return new_node;
+}
 
 // funcao para criar a fila
 Queue* Queue_create()
 {
     Queue *q = malloc(sizeof(Queue));
 
-    q->list = Llist_create();
     q->front = NULL;
     q->back = NULL;
+
+    return q;
 }
 
 // funcao para enfileirar
 void Enqueue(Queue *q, int key)
 {
-    if(q->back == NULL && q->front == NULL)
-        q->back = q->front = Llist_insertend(q->list, q->back, key);
+    if(q->front == NULL && q->back == NULL)
+        q->back = q->front = QueueNode_create(key);
     else
-        q->back = Llist_insertend(q->list, q->back, key);
+    {
+        q->back->next = QueueNode_create(key);
+        q->back = q->back->next;
+    }
 }
 
 // funcao para desenfileirar
 int Dequeue(Queue *q)
 {
-    int key = LL_Node_key(q->front);
+    QueueNode *aux = q->front;
+    int key;
 
-    if(q == NULL)
-        return -1;
-    if(q->list == NULL)
-        return -1;
+    if(q != NULL && aux != NULL)
+    {
+        key = aux->key;
+        q->front = q->front->next;
 
-    q->front = Llist_deletehead(q->list);
-
-    if(q->front == NULL)
-        q->back = NULL;
-
-    return key;
+        if(q->front == NULL)
+            q->back = NULL;
+            
+        free(aux);
+        return key;
+    }
+    return -1; // Queue nula
 }
 
 // funcao para imprimir a fila
 void Queue_print(Queue *q)
 {
+    QueueNode *aux = q->front;
     printf("->");
-    Llist_print(q->list);
+    while(aux != NULL)
+    {
+        printf("%d ",aux->key);
+        aux = aux->next;
+    }
 }
