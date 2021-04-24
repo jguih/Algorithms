@@ -62,6 +62,22 @@ LL_Node* Llist_insert(Llist *list, int new_key)
     return new_node;
 }
 
+// funcao para inserir no final da lista
+LL_Node* Llist_insertend(Llist *list, LL_Node *end, int key)
+{
+    LL_Node *new_node = LL_Node_create(key);
+
+    if(list == NULL)
+        list = Llist_create();
+    if(list->head == NULL)
+        return Llist_insert(list, key);
+    else if(end != NULL)
+    {
+        end->next = new_node;
+        return new_node;
+    }
+}
+
 // funcao para deletar noh da lista
 LL_Node* Llist_delete(Llist *list, int key)
 {

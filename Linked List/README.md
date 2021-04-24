@@ -30,7 +30,13 @@ Llist* Llist_create(); // função para criar a lista
 LL_Node* Llist_insert(Llist *list, int new_key); // função pra inserir na lista
 ```
 ```c
+LL_Node* Llist_insertend(Llist *list, LL_Node *end, int key); // função para inserir no final da lista
+```
+```c
 LL_Node* Llist_delete(Llist *list, int key); // função para deletar na lista
+```
+```c
+LL_Node* Llist_deletehead(Llist *list); // função para remover a head da lista
 ```
 ```c
 void Llist_print(Llist *list); // função para printar a lista
@@ -38,7 +44,5 @@ void Llist_print(Llist *list); // função para printar a lista
 ```c
 int Llist_isempty(Llist *list); // função para verificar se a lista está vazia
 ```
-```c
-LL_Node* Llist_deletehead(Llist *list); // função para remover a head da lista
-```
+
 

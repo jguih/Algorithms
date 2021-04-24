@@ -24,9 +24,9 @@ Queue* Queue_create()
 void Enqueue(Queue *q, int key)
 {
     if(q->back == NULL && q->front == NULL)
-        q->back = q->front = Llist_insert(q->list, key);
+        q->back = q->front = Llist_insertend(q->list, q->back, key);
     else
-        q->back = Llist_insert(q->list, key);
+        q->back = Llist_insertend(q->list, q->back, key);
 }
 
 // funcao para desenfileirar
