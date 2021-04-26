@@ -8,3 +8,5 @@ void Edge_insert(GraphAM *G, int v1, int v2); // insere aresta
 void Edge_remove(GraphAM *G, int v1, int v2); // remove aresta
 void Edge_print(GraphAM *G); // printa arestas
 int Graphisregular(GraphAM *G); // verifica se um grafo eh regular
+int DFS(GraphAM *G, int v1); // Depth First Search (verifica se o grafo eh ciclico ou aciclico)
+int DFS_Implementation(GraphAM *G, int v1); // Implementacao da DFS

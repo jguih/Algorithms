@@ -34,4 +34,12 @@ void Edge_print(GraphAL *G); // Mostra as arestas
 ```c
 void BFS(GraphAL *G, int v1); // Breadth First Search
 ```
-
+```c
+void BFS_Implementation(GraphAL *G, int v1); // Implementação da BFS
+```
+```c
+void DFS(GraphAL *G, int v1); // Depth First Search
+```
+```c
+void DFS_Implementation(GraphAL *G, int v1); // Implementação da DFS
+```

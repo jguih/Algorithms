@@ -107,3 +107,59 @@ int Graphisregular(GraphAM *G)
     }
     return 1;
 }
+
+int *visited; // marca os vertices jah visitados
+int cycle; // verifica se ha um ciclo no grafo
+int *descendent; // armazena os descendentes ja visitados
+int j; // auxiliar
+
+// funcao para iniciar as variaveis globais e chamar DFS
+int DFS(GraphAM *G, int v1)
+{
+    int i;
+
+    visited = (int*) malloc(G->V * sizeof(int));
+    descendent = (int*) malloc(G->V * sizeof(int));
+
+    for(i = 0; i < G->V; i++)
+    {
+        visited[i] = 0;
+        descendent[i] = -1;
+    }
+
+    cycle = 0;
+    j = -1;
+
+    i = DFS_Implementation(G, v1);
+
+    free(visited);
+    free(descendent);
+    visited = descendent = NULL;
+    
+    return i;
+}
+
+// Depth First Search
+int DFS_Implementation(GraphAM *G, int v1)
+{
+    int i;
+
+    if(G == NULL)
+        return -1;
+
+    if(visited[v1] == 0)
+    {
+        j++;
+        descendent[j] = v1;
+        //printf("%d ",v1);
+        visited[v1] = 1;
+        for(i = 0; i < G->V; i++)
+            if(Edgeexists(G, v1, i))
+                DFS_Implementation(G, i);
+    }
+    else if(j-2 >= 0)
+        if(v1 == descendent[j-2])
+            cycle = 1;
+    
+    return cycle;
+}

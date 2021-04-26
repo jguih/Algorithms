@@ -83,24 +83,36 @@ void GraphAL_print(GraphAL *G)
     }
 }
 
-// Breadth Fist Search
+int *visited; // variavel global para uso na BFS e DFS
+
+// funcao para iniciar a variavel global e chamar BFS
 void BFS(GraphAL *G, int v1)
 {
-    Queue *q = Queue_create(); // fila
-    int visited[G->V]; // vetor para marcar os visitados
-    int i, u; // auxiliares
-    int printed;
+    int i;
+
+    visited = (int*) malloc(G->V * sizeof(int));
 
     for(i = 0; i < G->V; i++)
         visited[i] = 0;
 
-    printf("%d\n",v1);
+    BFS_Implementation(G, v1);
+
+    free(visited);
+    visited = NULL;
+}
+
+// Breadth Fist Search
+void BFS_Implementation(GraphAL *G, int v1)
+{
+    Queue *q = Queue_create(); // fila
+    int i, u; // auxiliares
+
+    printf("%d ",v1);
     visited[v1] = 1;
     Enqueue(q, v1);
     while(!Queue_isempty(q))
     {
         u = Dequeue(q); // vertice
-        printed = 0;
         for(i = 0; i < G->V; i++) // arestas do vertice em 'u'
         {
             if(visited[i] == 0 && Edgeexists(G, u, i))
@@ -108,10 +120,38 @@ void BFS(GraphAL *G, int v1)
                 printf("%d ",i);
                 visited[i] = 1;
                 Enqueue(q, i);
-                printed++;
             }
         }
-        if(printed > 0)
-            printf("\n");
+    }
+}
+
+// funcao para iniciar a variavel global e chamar DFS
+void DFS(GraphAL *G, int v1)
+{
+    int i;
+
+    visited = (int*) malloc(G->V * sizeof(int));
+
+    for(i = 0; i < G->V; i++)
+        visited[i] = 0;
+
+    DFS_Implementation(G, v1);
+
+    free(visited);
+    visited = NULL;
+}
+
+// Depth First Search
+void DFS_Implementation(GraphAL *G, int v1)
+{
+    int i;
+
+    if(visited[v1] == 0)
+    {
+        printf("%d ",v1);
+        visited[v1] = 1;
+        for(i = 0; i < G->V; i++)
+            if(visited[i] == 0 && Edgeexists(G, v1, i))
+                DFS_Implementation(G, i);
     }
 }

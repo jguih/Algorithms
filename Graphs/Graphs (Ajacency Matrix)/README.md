@@ -34,3 +34,10 @@ void Edge_print(GraphAM *G); // Mostra as arestas
 ```c
 int Graphisregular(GraphAM *G); // Verifica se o grafo é regular
 ```
+O Algoritmo Depth First Search neste código verifica se o grafo é cíclico ou acíclico
+```c
+int DFS(GraphAM *G, int v1); // Depth First Search
+```
+```c
+int DFS_Implementation(GraphAM *G, int v1); // Implementacao da DFS
+```
