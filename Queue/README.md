@@ -30,3 +30,6 @@ int Dequeue(Queue *q); // função para desenfileirar
 ```c
 void Queue_print(Queue *q); // função para imprimir a fila
 ```
+```c
+int Queue_isempty(Queue *q); // verifica se a fila está vazia
+```

@@ -40,6 +40,25 @@ Llist* Llist_create()
     return list;
 }
 
+// funcao para procurar na lista
+int Llist_search(Llist *l, int key)
+{
+    LLNode *aux;
+
+    if(l != NULL && l->head != NULL)
+    {
+        aux = l->head;
+
+        while(aux != NULL)
+        {
+            if(aux->key == key)
+                return 1;
+            aux = aux->next;
+        }
+    }
+    return 0;
+}
+
 // funcao para inserir na lista
 LLNode* Llist_insert(Llist *list, int new_key)
 {

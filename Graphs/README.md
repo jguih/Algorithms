@@ -31,4 +31,7 @@ void Edge_remove(GraphAL *G, int v1, int v2); // Remove aresta no grafo
 ```c
 void Edge_print(GraphAL *G); // Mostra as arestas
 ```
+```c
+void BFS(GraphAL *G, int v1); // Breadth First Search
+```
 

@@ -27,6 +27,9 @@ int LLNode_key(LLNode *Node); // retorna a key do nó
 Llist* Llist_create(); // função para criar a lista
 ```
 ```c
+int Llist_search(Llist *l, int key); // Função para procurar na lista
+```
+```c
 LLNode* Llist_insert(Llist *list, int new_key); // função pra inserir na lista
 ```
 ```c

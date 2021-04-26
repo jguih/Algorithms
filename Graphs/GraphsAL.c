@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "GraphsAL.h"
 #include "LinkedList.h"
+#include "Queue.h"
 
 // Grafo por lista de adjacencia
 struct GraphAL
@@ -46,7 +47,7 @@ int Edgeexists(GraphAL *G, int v1, int v2)
 // funcao para verificar se vertice eh valido
 int Vortex_isvalid(GraphAL *G, int v1)
 {
-    return (v1 >= 0 && v1 < G->V) ? 1:0;
+    return (G != NULL && v1 >= 0 && v1 < G->V) ? 1:0;
 }
 
 // funcao para inserir aresta
@@ -79,5 +80,38 @@ void GraphAL_print(GraphAL *G)
         printf("%d -> ",i);
         Llist_print(G->adj[i]);
         printf("\n");
+    }
+}
+
+// Breadth Fist Search
+void BFS(GraphAL *G, int v1)
+{
+    Queue *q = Queue_create(); // fila
+    int visited[G->V]; // vetor para marcar os visitados
+    int i, u; // auxiliares
+    int printed;
+
+    for(i = 0; i < G->V; i++)
+        visited[i] = 0;
+
+    printf("%d\n",v1);
+    visited[v1] = 1;
+    Enqueue(q, v1);
+    while(!Queue_isempty(q))
+    {
+        u = Dequeue(q); // vertice
+        printed = 0;
+        for(i = 0; i < G->V; i++) // arestas do vertice em 'u'
+        {
+            if(visited[i] == 0 && Edgeexists(G, u, i))
+            {
+                printf("%d ",i);
+                visited[i] = 1;
+                Enqueue(q, i);
+                printed++;
+            }
+        }
+        if(printed > 0)
+            printf("\n");
     }
 }

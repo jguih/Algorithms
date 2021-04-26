@@ -8,12 +8,12 @@ int main()
 
     Edge_insert(G, 0, 1);
     Edge_insert(G, 0, 2);
-    Edge_insert(G, 0, 3);
-    Edge_insert(G, 0, 4);
-    Edge_insert(G, 4, 3);
-    Edge_remove(G, 0, 2);
-
-    GraphAL_print(G);
+    Edge_insert(G, 2, 3);
+    Edge_insert(G, 3, 4);
+    Edge_insert(G, 4, 0);
+    Edge_insert(G, 4, 1);
+    
+    BFS(G, 2);
 
     return 0;
 }
