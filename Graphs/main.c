@@ -4,22 +4,18 @@
 
 int main()
 {
-    GraphAL *G = GraphAL_create(5);
+    GraphAL *G = GraphAL_create(9);
 
-    Edge_insert(G, 0, 2);
-    Edge_insert(G, 0, 3);
-    Edge_insert(G, 1, 2);
-    Edge_insert(G, 2, 0);
-    Edge_insert(G, 2, 1);
-    Edge_insert(G, 2, 3);
-    Edge_insert(G, 2, 4);
-    Edge_insert(G, 3, 2);
-    Edge_insert(G, 3, 0);
-    Edge_insert(G, 4, 2);
+    Insertbymatrix(G);
     
+    printf("\nBFS: ");
     BFS(G, 2);
     printf("\n");
+    printf("DFS: ");
     DFS(G, 3);
+    printf("\n\n");
+    GraphAL_print(G);
+    PrimsAlg(G);
 
     return 0;
 }

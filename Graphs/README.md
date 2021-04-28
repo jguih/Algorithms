@@ -1,6 +1,24 @@
 # Graph (Adjacency list)
 Implementação de grafos por lista de adjacência.
-## Estrutura
+## Estruturas
+
+Nó da lista encadeada
+```c
+struct LLNode
+{
+    int edge; // aresta
+    int cost; // custo da aresta
+    struct LLNode *next;
+};
+```
+Lista encadeada
+```c
+struct LinkedList
+{
+    LLNode *head;
+};
+```
+Grafo
 ```c
 struct GraphAL
 {
@@ -10,8 +28,35 @@ struct GraphAL
 };
 ```
 ## Funções neste código
+
+Funcões de lista encadeada
+```c
+Llist* Llist_create(); // Cria a lista 
+```
+```c
+void Llist_print(Llist *list); // Mostra a lista
+```
+```c
+LLNode* LLNode_create(int edge, int cost); // Cria o nó da lista
+```
+```c
+LLNode* Llist_search(Llist *l, int edge); // Pesquisa aresta na lista
+```
+```c
+void Llist_insert(Llist *list, int edge, int cost); // Insere na lista
+```
+```c
+void Llist_delete(Llist *list, int edge); // Deleta aresta da lista
+```
+Funções principais (Grafo)
 ```c
 Llist** AdjLlist_create(int n) // Função para criar a lista de adjacência
+```
+```c
+void AMtoAL(GraphAL *G, int **m); // Converte uma matriz de adjacência em um alista de adjacência
+```
+```c
+void Insertbymatrix(GraphAL *G); // Lê uma matriz de adjacência e a converte para lista de adjacência
 ```
 ```c
 GraphAL* GraphAL_create(int n); // Função para criar grafo
@@ -21,6 +66,9 @@ int Edgeexists(GraphAL *G, int v1, int v2); // Verifica se existe uma aresta ent
 ```
 ```c
 int Vortex_isvalid(GraphAL *G, int v1); // Verifica se o vértice é válido
+```
+```c
+int Vortex_cost(GraphAL *G, int v1, int v2); // Retorna o custo do vertice
 ```
 ```c
 void Edge_insert(GraphAL *G, int v1, int v2); // Insere aresta no grafo
@@ -42,4 +90,17 @@ void DFS(GraphAL *G, int v1); // Depth First Search
 ```
 ```c
 void DFS_Implementation(GraphAL *G, int v1); // Implementação da DFS
+```
+Funções para o Algoritmo de Prim
+```c
+int** tmatrix(GraphAL *G); // Gera a matriz t
+```
+```c
+void PrimsAlg(GraphAL *G); // Prim's Algorithm
+```
+```c
+void tprint(GraphAL *G, int **t); // Mostra a matriz t
+```
+```c
+void FindFather(GraphAL *G, int **t); // Mostra os pais dos vértices da árvore gerada pelo algoritmo de Prim
 ```
