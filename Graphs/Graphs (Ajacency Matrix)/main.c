@@ -4,16 +4,9 @@
 
 int main()
 {
-    GraphAM *G = GraphAM_create(5);
+    GraphAM *G = GraphAM_create(9);
 
-    Edge_insert(G, 0, 2);
-    Edge_insert(G, 1, 2);
-    Edge_insert(G, 2, 3);
-    Edge_insert(G, 2, 4);
-    Edge_insert(G, 2, 0);
-    Edge_insert(G, 3, 0);
-
-    //Edge_print(G);
+    Matrix_insert(G);
 
     if(DFS(G, 0))
         printf("\nGraph is cyclic\n");
@@ -23,7 +16,9 @@ int main()
     if(Graphisregular(G))
         printf("Graph is regular");
     else   
-        printf("Graph isn't regular");
+        printf("Graph isn't regular\n");
+
+    PrimsAlg(G);
 
     return 0;
 }

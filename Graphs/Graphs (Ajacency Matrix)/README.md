@@ -14,6 +14,9 @@ struct GraphAM
 int** Matrix_create(int n); // Função para criar matriz
 ```
 ```c
+void Matrix_insert(GraphAM *G); // Função para inserir matriz no grafo
+```
+```c
 GraphAM* GraphAM_create(int n); // Função para criar grafo
 ```
 ```c
@@ -40,4 +43,16 @@ int DFS(GraphAM *G, int v1); // Depth First Search
 ```
 ```c
 int DFS_Implementation(GraphAM *G, int v1); // Implementacao da DFS
+```
+```c
+int** tmatrix(GraphAM *G); // Aloca a matriz t (auxiliar para Prim's Alg)
+```
+```c
+void PrimsAlg(GraphAM *G); // Prim's Algorithm
+```
+```c
+void tprint(GraphAM *G, int **t); // Mostra a matriz t
+```
+```c
+void FindFather(GraphAM *G, int **t); // Mostra os pais de cada vertice da árvore do algoritmo de Prim
 ```
