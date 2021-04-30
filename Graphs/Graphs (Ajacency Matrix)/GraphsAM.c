@@ -216,7 +216,7 @@ void PrimsAlg(GraphAM *G)
         near[i] = INT_MAX;
 
     // procura o menor custo na matriz do grafo
-    for(i = 0; i < 1; i++)
+    for(i = 0; i < G->V; i++)
     {
         for(j = i; j < G->V; j++)
         {

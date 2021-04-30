@@ -15,7 +15,7 @@ void Llist_delete(Llist *list, int edge); // deleta aresta da lista
 // ------------------------------------------
 
 Llist** AdjLlist_create(int n); // funcao para criar a lista de adjacência
-void AMtoAL(GraphAL *G, int **m); // funcao que converte uma matriz de adjacencia em um alista de adjacencia
+void AMtoAL(GraphAL *G, int **m); // funcao que converte uma matriz de adjacencia em uma lista de adjacencia
 void Insertbymatrix(GraphAL *G); // funcao que leh uma matriz de adjacencia
 GraphAL* GraphAL_create(int v); // funcao para criar o grafo
 int Edgeexists(GraphAL *G, int v1, int v2); // funcao para verificar se a aresta existe
@@ -32,9 +32,20 @@ void DFS_Implementation(GraphAL *G, int v1); // implementacao da DFS
 //--------------------------------------------------------------------
 //                  Funcoes para o Algoritmo de Prim
 
-int** tmatrix(GraphAL *G); // gera a matriz t
+int** Prims_tmatrix(GraphAL *G); // gera a matriz t
 void PrimsAlg(GraphAL *G); // Prim's Algorithm
-void tprint(GraphAL *G, int **t); // mostra a matriz t
-void FindFather(GraphAL *G, int **t); // mostra os pais dos vertices da arvore gerada pelo algoritmo de Prim
+void Prims_tprint(GraphAL *G, int **t); // mostra a matriz t
+void Prims_FindFather(GraphAL *G, int **t); // mostra os pais dos vertices da arvore gerada pelo algoritmo de Prim
 
-//--------------------------------------------------------------------
+//------------------------------------------------------------------------
+//                  Funcoes para o Algoritmo de Dijkstra
+
+int Dijkstra_Qisempty(GraphAL *G, int Q[]); // verifica se o conjunto Q estah vazio
+int Dijkstra_Qmin(GraphAL *G, int Q[], int d[]); // calcula a menor distancia do vetor d[] considerando os valores validos do conjunto Q[]
+void Dijkstra_tprint(GraphAL *G, int **t); // mostra a matriz t
+int Dijkstra_FinduFather(GraphAL *G, int d[], int Q[], int u); // acha o pai de u
+int** Dijkstra_tmatrix(GraphAL *G); // aloca a matriz t
+void Dijkstra_printfather(GraphAL *G, int **t, int v1); // mostra os pais dos vertices da arvore gerada por Dijkstra
+void Dijkstra(GraphAL *G, int v1); // Dijkstra Algorithm
+
+//------------------------------------------------------------------------

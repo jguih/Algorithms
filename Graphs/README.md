@@ -53,7 +53,7 @@ Funções principais (Grafo)
 Llist** AdjLlist_create(int n) // Função para criar a lista de adjacência
 ```
 ```c
-void AMtoAL(GraphAL *G, int **m); // Converte uma matriz de adjacência em um alista de adjacência
+void AMtoAL(GraphAL *G, int **m); // Converte uma matriz de adjacência em uma lista de adjacência
 ```
 ```c
 void Insertbymatrix(GraphAL *G); // Lê uma matriz de adjacência e a converte para lista de adjacência
@@ -103,4 +103,26 @@ void tprint(GraphAL *G, int **t); // Mostra a matriz t
 ```
 ```c
 void FindFather(GraphAL *G, int **t); // Mostra os pais dos vértices da árvore gerada pelo algoritmo de Prim
+```
+Funções para o Algoritmo de Djikstra
+```c
+int Dijkstra_Qisempty(GraphAL *G, int Q[]); // Verifica se o conjunto Q está vazio
+```
+```c
+int Dijkstra_Qmin(GraphAL *G, int Q[], int d[]); // Calcula a menor distancia do vetor d[] considerando os valores válidos do conjunto Q[]
+```
+```c
+void Dijkstra_tprint(GraphAL *G, int **t); // Mostra a matriz t
+```
+```c
+int Dijkstra_FinduFather(GraphAL *G, int d[], int Q[], int u); // Acha o pai de u
+```
+```c
+int** Dijkstra_tmatrix(GraphAL *G); // Aloca a matriz t
+```
+```c
+void Dijkstra_printfather(GraphAL *G, int **t, int v1); // Mostra os pais dos vertices da arvore gerada por Dijkstra
+```
+```c
+void Dijkstra(GraphAL *G, int v1); // Dijkstra Algorithm
 ```

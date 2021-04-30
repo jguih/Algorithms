@@ -44,6 +44,7 @@ int DFS(GraphAM *G, int v1); // Depth First Search
 ```c
 int DFS_Implementation(GraphAM *G, int v1); // Implementacao da DFS
 ```
+Funções para o Algoritmo de Prim
 ```c
 int** tmatrix(GraphAM *G); // Aloca a matriz t (auxiliar para Prim's Alg)
 ```

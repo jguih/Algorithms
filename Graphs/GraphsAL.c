@@ -119,7 +119,6 @@ void Llist_delete(Llist *list, int edge)
         {
             // se a key que sera deletada estiver na head, esta aponta para o proximo elemento
             list->head = p->next;
-            free(p);
         }
         else
         {
@@ -132,11 +131,12 @@ void Llist_delete(Llist *list, int edge)
                 }
                 p = p->next; // p vai para o proximo
             }
+            free(deleted);
         }
+        free(p);
     }
-    free(deleted);
-    free(p);
 }
+    
 //----------------------------------------------
 
 // funcao para criar a lista de adjacencia
@@ -202,6 +202,7 @@ int Edgeexists(GraphAL *G, int v1, int v2)
 {
     if(G != NULL && G->adj[v1]->head != NULL)
         return Llist_search(G->adj[v1], v2) == NULL ? 0:1;
+    else return 0;
 }
 
 // funcao para verificar se vertice eh valido
@@ -210,6 +211,7 @@ int Vortex_isvalid(GraphAL *G, int v1)
     return (G != NULL && v1 >= 0 && v1 < G->V) ? 1:0;
 }
 
+// funcao que retorna o custo entre v1 e v2
 int Vortex_cost(GraphAL *G, int v1, int v2)
 {
     LLNode *aux = Llist_search(G->adj[v1], v2);
@@ -326,7 +328,7 @@ void DFS_Implementation(GraphAL *G, int v1)
 //                  Funcoes para o Algoritmo de Prim
 
 // funcao para alocar a matriz t
-int** tmatrix(GraphAL *G)
+int** Prims_tmatrix(GraphAL *G)
 {
     int **t = (int**) malloc(2 * sizeof(int*));
     int i;
@@ -344,19 +346,22 @@ void PrimsAlg(GraphAL *G)
     /*
         t eh uma matriz que armazena as arestas de menor custo
     */
-    int **t = tmatrix(G);
+    int **t = Prims_tmatrix(G);
     /* 
         near eh um vetor que armazena o vertice mais proximo 
         de um vertice i, sendo i a posicao no vetor
     */
     int near[G->V]; 
 
+    if(G == NULL)
+        return;
+
     // inicia o vetor near
     for(i = 0; i < G->V; i++)
         near[i] = INT_MAX;
 
-    // procura o menor custo na matriz do grafo
-    for(i = 0; i < 1; i++)
+    // procura o menor custo na matriz do grafo (parte triangular superior)
+    for(i = 0; i < G->V; i++)
     {
         for(j = i; j < G->V; j++)
         {
@@ -425,11 +430,11 @@ void PrimsAlg(GraphAL *G)
         }
     }
     printf("\n");
-    tprint(G, t);
-    //FindFather(G, t);
+    Prims_tprint(G, t);
+    Prims_FindFather(G, t);
 }
 
-void tprint(GraphAL *G, int **t)
+void Prims_tprint(GraphAL *G, int **t)
 {
     int i, j;
 
@@ -441,7 +446,7 @@ void tprint(GraphAL *G, int **t)
     }
 }
 
-void FindFather(GraphAL *G, int **t)
+void Prims_FindFather(GraphAL *G, int **t)
 {
     int i, j;
 
@@ -463,5 +468,141 @@ void FindFather(GraphAL *G, int **t)
             }
         }
     }
+}
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//                  Funcoes para o Algoritmo de Dijkstra
+
+// funcao para verificar se o conjunto Q estah vazio
+int Dijkstra_Qisempty(GraphAL *G, int Q[])
+{
+    int i, count = 0;
+
+    for(i = 0; i < G->V; i++)
+        if(Q[i] == 0)
+            count++;
+        else
+            break;
+
+    return count == G->V ? 1:0;
+}
+
+// funcao para procurar o custo minimo no conjunto Q
+int Dijkstra_Qmin(GraphAL *G, int Q[], int d[])
+{
+    int min = INT_MAX, i, u;
+
+    for(i = 0; i < G->V; i++)
+        if(Q[i] == 1)
+            if(d[i] < min)
+            {
+                min = d[i];
+                u = i;
+            }
+    return u;
+}
+
+// funcao para printar a matriz t
+void Dijkstra_tprint(GraphAL *G, int **t)
+{
+    int i, j;
+
+    for(i = 0; i < 2; i++)
+    {
+        for(j = 0; j < G->V-1; j++)
+            printf("[%d]",t[i][j]);
+        printf("\n");
+    }
+}
+
+// funcao para procurar o pai de u
+int Dijkstra_FinduFather(GraphAL *G, int d[], int Q[], int u)
+{
+    int i;
+
+    for(i = 0; i < G->V; i++)
+    {
+        if(Q[i] == 0) // vertice jah percorrido
+            if(d[u] == Vortex_cost(G,i,u) + d[i])
+                return i;
+    }
+    return -1;
+}
+
+// funcao para alocar a matriz t
+int** Dijkstra_tmatrix(GraphAL *G)
+{
+    int **t = (int**) malloc(2 * sizeof(int*));
+    int i;
+
+    for(i = 0; i < 2; i++)
+        t[i] = (int*) malloc( (G->V-1) * sizeof(int));
+    
+    return t;
+}
+
+// funcao para imprimir os pais dos vertices
+void Dijkstra_printfather(GraphAL *G, int **t, int v1)
+{
+    int i, j;
+
+    for(i = 0; i < G->V; i++) // vertices
+    {
+        if(i == 0)
+            printf("%d: -\n",v1);
+        else
+            for(j = 0; j < G->V-1; j++)
+                if(t[1][j] == i)
+                    printf("%d: %d\n",t[1][j],t[0][j]);
+    }
+}
+
+void Dijkstra(GraphAL *G, int v1)
+{
+    int d[G->V]; // vetor de distancias
+    int **t = Dijkstra_tmatrix(G); // matriz de arestas da arvore
+    int Q[G->V]; // conjunto de vertices
+    int i, u, j = -1, cost; // auxiliares
+    
+    for(i = 0; i < G->V; i++)
+    {
+        d[i] = INT_MAX;
+        Q[i] = 1; // 1 dentro, 0 fora
+    }
+
+    d[v1] = 0;
+    t[0][0] = v1;
+
+    while(!(Dijkstra_Qisempty(G,Q)))
+    {
+        u = Dijkstra_Qmin(G,Q,d); // u recebe o vertice de menor distancia
+        Q[u] = 0; // fora
+
+        if(u != v1)    
+        {
+            j++;
+            t[1][j] = u; // u eh inserido na arvore
+            if(j+1 <= G->V)
+                t[0][j+1] = u; // pai do proximo u
+        }
+
+        if(j >= 1)
+            if(Vortex_cost(G,t[1][j-1],u) == INT_MAX) // verifica se nao ha ligacao entre o valor escolhido anterior e o atual
+                t[0][j] = Dijkstra_FinduFather(G,d,Q,u);
+
+        for(i = 0; i < G->V; i++) // percorre todos os vertices possiveis
+        {
+            if(Q[i] == 1) // se for um vertice valido (ainda nao percorrido)
+            {
+                cost = Vortex_cost(G, u, i);
+                if(cost != INT_MAX && d[u] + cost < d[i]) // Relaxation
+                    d[i] = d[u] + cost;
+            }
+        }
+    }
+    Dijkstra_tprint(G,t);
+    printf("\n");
+    Dijkstra_printfather(G,t,v1);
 }
 //--------------------------------------------------------------------

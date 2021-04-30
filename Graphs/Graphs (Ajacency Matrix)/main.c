@@ -4,7 +4,7 @@
 
 int main()
 {
-    GraphAM *G = GraphAM_create(9);
+    GraphAM *G = GraphAM_create(6);
 
     Matrix_insert(G);
 
